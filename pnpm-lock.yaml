@@ -14,12 +14,21 @@ importers:
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.49)
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       eslint-plugin-react:
         specifier: ^7.37.3
         version: 7.37.3(eslint@9.17.0(jiti@1.21.7))
       eslint-plugin-react-hooks:
         specifier: ^5.1.0
         version: 5.1.0(eslint@9.17.0(jiti@1.21.7))
+      lucide-react:
+        specifier: ^0.469.0
+        version: 0.469.0(react@19.0.0)
       mini-svg-data-uri:
         specifier: ^1.4.4
         version: 1.4.4
@@ -35,6 +44,9 @@ importers:
       recommended.js:
         specifier: link:eslint-plugin-react/configs/recommended.js
         version: link:eslint-plugin-react/configs/recommended.js
+      tailwind-merge:
+        specifier: ^2.6.0
+        version: 2.6.0
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.17)
@@ -60,6 +72,9 @@ importers:
       postcss:
         specifier: ^8.4.49
         version: 8.4.49
+      prisma:
+        specifier: ^6.2.1
+        version: 6.2.1
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.17
@@ -331,6 +346,21 @@ packages:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
 
+  '@prisma/debug@6.2.1':
+    resolution: {integrity: sha512-0KItvt39CmQxWkEw6oW+RQMD6RZ43SJWgEUnzxN8VC9ixMysa7MzZCZf22LCK5DSooiLNf8vM3LHZm/I/Ni7bQ==}
+
+  '@prisma/engines-version@6.2.0-14.4123509d24aa4dede1e864b46351bf2790323b69':
+    resolution: {integrity: sha512-7tw1qs/9GWSX6qbZs4He09TOTg1ff3gYsB3ubaVNN0Pp1zLm9NC5C5MZShtkz7TyQjx7blhpknB7HwEhlG+PrQ==}
+
+  '@prisma/engines@6.2.1':
+    resolution: {integrity: sha512-lTBNLJBCxVT9iP5I7Mn6GlwqAxTpS5qMERrhebkUhtXpGVkBNd/jHnNJBZQW4kGDCKaQg/r2vlJYkzOHnAb7ZQ==}
+
+  '@prisma/fetch-engine@6.2.1':
+    resolution: {integrity: sha512-OO7O9d6Mrx2F9i+Gu1LW+DGXXyUFkP7OE5aj9iBfA/2jjDXEJjqa9X0ZmM9NZNo8Uo7ql6zKm6yjDcbAcRrw1A==}
+
+  '@prisma/get-platform@6.2.1':
+    resolution: {integrity: sha512-zp53yvroPl5m5/gXYLz7tGCNG33bhG+JYCm74ohxOq1pPnrL47VQYFfF3RbTZ7TzGWCrR3EtoiYMywUBw7UK6Q==}
+
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
 
@@ -572,8 +602,15 @@ packages:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
     engines: {node: '>= 8.10.0'}
 
+  class-variance-authority@0.7.1:
+    resolution: {integrity: sha512-Ka+9Trutv7G8M6WT6SeiRWz792K5qEqIGEGzXKhAE6xOWAY6pPH8U+9IY3oCMv6kqTmLsv7Xh/2w2RigkePMsg==}
+
   client-only@0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
+
+  clsx@2.1.1:
+    resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
+    engines: {node: '>=6'}
 
   color-convert@2.0.1:
     resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==}
@@ -1184,6 +1221,11 @@ packages:
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
+  lucide-react@0.469.0:
+    resolution: {integrity: sha512-28vvUnnKQ/dBwiCQtwJw7QauYnE7yd2Cyp4tTTJpvglX4EMpbflcdBgrgToX2j71B3YvugK/NH3BGUk+E/p/Fw==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
@@ -1406,6 +1448,11 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
+  prisma@6.2.1:
+    resolution: {integrity: sha512-hhyM0H13pQleQ+br4CkzGizS5I0oInoeTw3JfLw1BRZduBSQxPILlJLwi+46wZzj9Je7ndyQEMGw/n5cN2fknA==}
+    engines: {node: '>=18.18'}
+    hasBin: true
+
   prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
 
@@ -1620,6 +1667,9 @@ packages:
   supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+
+  tailwind-merge@2.6.0:
+    resolution: {integrity: sha512-P+Vu1qXfzediirmHOC3xKGAYeZtPcV9g76X+xg2FD4tYgR71ewMA35Y3sCz3zhiN/dwefRpJX0yBcgwi1fXNQA==}
 
   tailwindcss-animate@1.0.7:
     resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
@@ -1958,6 +2008,27 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
+  '@prisma/debug@6.2.1': {}
+
+  '@prisma/engines-version@6.2.0-14.4123509d24aa4dede1e864b46351bf2790323b69': {}
+
+  '@prisma/engines@6.2.1':
+    dependencies:
+      '@prisma/debug': 6.2.1
+      '@prisma/engines-version': 6.2.0-14.4123509d24aa4dede1e864b46351bf2790323b69
+      '@prisma/fetch-engine': 6.2.1
+      '@prisma/get-platform': 6.2.1
+
+  '@prisma/fetch-engine@6.2.1':
+    dependencies:
+      '@prisma/debug': 6.2.1
+      '@prisma/engines-version': 6.2.0-14.4123509d24aa4dede1e864b46351bf2790323b69
+      '@prisma/get-platform': 6.2.1
+
+  '@prisma/get-platform@6.2.1':
+    dependencies:
+      '@prisma/debug': 6.2.1
+
   '@rtsao/scc@1.1.0': {}
 
   '@rushstack/eslint-patch@1.10.5': {}
@@ -2259,7 +2330,13 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
+  class-variance-authority@0.7.1:
+    dependencies:
+      clsx: 2.1.1
+
   client-only@0.0.1: {}
+
+  clsx@2.1.1: {}
 
   color-convert@2.0.1:
     dependencies:
@@ -3028,6 +3105,10 @@ snapshots:
 
   lru-cache@10.4.3: {}
 
+  lucide-react@0.469.0(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+
   math-intrinsics@1.1.0: {}
 
   merge2@1.4.1: {}
@@ -3236,6 +3317,12 @@ snapshots:
       source-map-js: 1.2.1
 
   prelude-ls@1.2.1: {}
+
+  prisma@6.2.1:
+    dependencies:
+      '@prisma/engines': 6.2.1
+    optionalDependencies:
+      fsevents: 2.3.3
 
   prop-types@15.8.1:
     dependencies:
@@ -3521,6 +3608,8 @@ snapshots:
       has-flag: 4.0.0
 
   supports-preserve-symlinks-flag@1.0.0: {}
+
+  tailwind-merge@2.6.0: {}
 
   tailwindcss-animate@1.0.7(tailwindcss@3.4.17):
     dependencies:
