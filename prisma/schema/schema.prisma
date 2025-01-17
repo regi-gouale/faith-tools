@@ -22,8 +22,13 @@ model User {
   hashedPassword String?
   role           UserRole @default(USER)
 
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+
   sessions Session[]
   accounts Account[]
+
+  @@map("users")
 }
 
 enum UserRole {
