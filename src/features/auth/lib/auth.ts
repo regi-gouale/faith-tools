@@ -1,20 +1,18 @@
 import { env } from "@/shared/lib/env";
 import { prisma } from "@/shared/lib/prisma";
-import { PrismaAdapter } from "@auth/prisma-adapter";
 import { UserRole } from "@prisma/client";
 import { compare } from "bcryptjs";
-import NextAuth, { CredentialsSignin, NextAuthConfig } from "next-auth";
+import NextAuth, { CredentialsSignin, NextAuthConfig, User } from "next-auth";
 import Credential from "next-auth/providers/credentials";
 
-export const { handlers, auth } = NextAuth({
-  pages: {
-    signIn: "/auth/signin",
-    signOut: "/auth/signout",
-    error: "/auth/error",
-    verifyRequest: "/auth/verify-request",
-    newUser: "/orgs",
-  },
-  adapter: PrismaAdapter(prisma),
+interface ExtendedUser extends User {
+  role: UserRole;
+  organizationId: string;
+}
+
+// const SECRET = env.AUTH_SECRET;
+
+export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Credential({
       name: "credentials",
@@ -59,10 +57,24 @@ export const { handlers, auth } = NextAuth({
       },
     }),
   ],
-  session: {
-    strategy: "database",
+  pages: {
+    signIn: "/auth/signin",
+    // signOut: "/auth/signout",
+    // error: "/auth/error",
+    // verifyRequest: "/auth/verify-request",
+    // newUser: "/orgs",
   },
   callbacks: {
+    jwt({ user, token }) {
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
+        token.name = user.name;
+        token.role = (user as ExtendedUser).role;
+        token.organizationId = (user as ExtendedUser).organizationId;
+      }
+      return token;
+    },
     session({ session, token }) {
       session.user.id = token.id as string;
       session.user.email = token.email as string;
@@ -75,5 +87,5 @@ export const { handlers, auth } = NextAuth({
     },
   },
   trustHost: true,
-  secret: env.AUTH_SECRET || "default-secret",
+  secret: env.AUTH_SECRET as string,
 } satisfies NextAuthConfig);

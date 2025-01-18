@@ -1,14 +1,15 @@
-"use client";
+import { auth } from "@/features/auth/lib/auth";
+import { redirect } from "next/navigation";
 
-import { useSession } from "next-auth/react";
-
-export default function Dashboard() {
-  const { data: session } = useSession();
-
+export default async function Dashboard() {
+  const session = await auth();
+  if (!session) {
+    redirect("/auth/signin");
+  }
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
       <h1 className="text-4xl font-bold">Tableau de Bord</h1>
-      <p className="mt-4">Bienvenue, {session?.user?.email}</p>
+      {/* <p className="mt-4">Bienvenue, {session?.user?.email}</p> */}
     </div>
   );
 }

@@ -44,7 +44,7 @@ export default function Contact() {
     <section id="contact" className="py-20 bg-slate-50 dark:bg-slate-800">
       <div className="container mx-auto px-4">
         <h2 className="mb-8 text-center text-3xl font-bold">Contactez Nous</h2>
-        <div className="mx-auto max-w-md">
+        <div className="mx-auto max-w-3xl">
           <Form {...form}>
             <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
               <FormField

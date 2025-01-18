@@ -1,4 +1,5 @@
 import { Button } from "@ui/button";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -16,10 +17,10 @@ export default function Hero() {
         </p>
         <div className="flex justify-center space-x-8">
           <Button size="lg" variant="default">
-            S'inscrire
+            <Link href="/auth/signup">S'inscrire</Link>
           </Button>
           <Button size="lg" variant="secondary">
-            Se connecter
+            <Link href="/auth/signin">Se connecter</Link>
           </Button>
         </div>
       </div>

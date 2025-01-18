@@ -63,7 +63,7 @@ export default function Pricing() {
                 </ul>
               </CardContent>
               <CardFooter>
-                <Button className="w-full">Choose Plan</Button>
+                <Button className="w-full">Choisir ce plan</Button>
               </CardFooter>
             </Card>
           ))}

@@ -1,5 +1,5 @@
+import { ThemeProvider } from "@/shared/components/theme/theme-provider";
 import { cn } from "@/shared/utils/utils";
-import { ThemeProvider } from "@components/layout/theme-provider";
 import { TailwindIndicator } from "@ui/tailwind-indicator";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";

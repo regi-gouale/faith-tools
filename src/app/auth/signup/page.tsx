@@ -1,5 +1,5 @@
 import { auth } from "@/features/auth/lib/auth";
-import { loginUser } from "@features/auth/lib/actions";
+import { registerUser } from "@features/auth/lib/actions";
 import { Button } from "@ui/button";
 import {
   Card,
@@ -13,7 +13,7 @@ import { Input } from "@ui/input";
 import { Label } from "@ui/label";
 import { redirect } from "next/navigation";
 
-export default async function SignInPage() {
+export default async function SignUpPage() {
   const session = await auth();
 
   if (session) {
@@ -26,16 +26,26 @@ export default async function SignInPage() {
         <Card>
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold text-center">
-              Connexion
+              Créer un compte
             </CardTitle>
             <CardDescription className="text-center py-4 space-y-8">
-              Connectez-vous à votre compte pour accéder à notre plateforme
-              incroyable.
+              Créez un compte pour accéder à notre plateforme incroyable.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
             <div className="space-y-2 mx-auto max-w-3xl p-4">
-              <form className="space-y-8" action={loginUser}>
+              <form className="space-y-8" action={registerUser}>
+                <div className="grid grid-cols-4 items-center space-x-2">
+                  <Label>Nom</Label>
+                  <Input
+                    placeholder="Jean Dupont"
+                    name="name"
+                    type="text"
+                    className="rounded-lg col-span-3"
+                    required
+                    aria-required
+                  />
+                </div>
                 <div className="grid grid-cols-4 items-center space-x-2">
                   <Label>E-Mail</Label>
                   <Input
@@ -57,16 +67,16 @@ export default async function SignInPage() {
                   />
                 </div>
                 <Button type="submit" className="w-full">
-                  Me connecter
+                  Créer mon compte
                 </Button>
               </form>
             </div>
           </CardContent>
           <CardFooter>
             <CardDescription className="text-center px-4">
-              Vous n'avez pas de compte ?{" "}
-              <a href="/auth/signup" className="font-semibold text-primary">
-                Inscrivez-vous
+              Vous avez déjà un compte ?{" "}
+              <a href="/auth/signin" className="font-semibold text-primary">
+                Connectez-vous
               </a>
             </CardDescription>
           </CardFooter>
