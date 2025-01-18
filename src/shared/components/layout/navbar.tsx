@@ -1,18 +1,18 @@
 "use client";
 
-import { Menu } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
-import Logo from "../icons/logo";
-import { Button } from "../ui/button";
+import Logo from "@components/icons/logo";
+import { ThemeToggle } from "@components/theme/theme-toggle";
+import { Button } from "@ui/button";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "../ui/sheet";
-import { ThemeToggle } from "./theme-toggle";
+} from "@ui/sheet";
+import { Menu } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
 interface NavItemProps {
   href: string;
