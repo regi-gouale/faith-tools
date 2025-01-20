@@ -7,52 +7,46 @@ import {
   BarChart4,
   Columns3,
   Globe,
-  Locate,
   Settings2,
   ShoppingBag,
   ShoppingCart,
   Users,
 } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
+import { ReactNode } from "react";
 
 const navigationItems: SidebarItem[] = [
   {
-    name: "Overview",
+    name: "Tableau de bord",
     href: "/",
     icon: Globe,
     type: "item",
   },
   {
     type: "label",
-    name: "Management",
+    name: "Membres",
   },
   {
-    name: "Products",
+    name: "Tous les membres",
     href: "/products",
     icon: ShoppingBag,
     type: "item",
   },
   {
-    name: "People",
+    name: "STAR",
     href: "/people",
     icon: Users,
     type: "item",
   },
   {
-    name: "Segments",
+    name: "Responsables",
     href: "/segments",
     icon: Columns3,
     type: "item",
   },
   {
-    name: "Regions",
-    href: "/regions",
-    icon: Locate,
-    type: "item",
-  },
-  {
     type: "label",
-    name: "Monetization",
+    name: "Départements",
   },
   {
     name: "Revenue",
@@ -74,7 +68,7 @@ const navigationItems: SidebarItem[] = [
   },
   {
     type: "label",
-    name: "Settings",
+    name: "Paramètres",
   },
   {
     name: "Configuration",
@@ -84,7 +78,7 @@ const navigationItems: SidebarItem[] = [
   },
 ];
 
-export default function Layout(props: { children: React.ReactNode }) {
+export default function Layout({ children }: { children: ReactNode }) {
   const params = useParams<{ teamId: string }>();
   const user = useUser({ or: "redirect" });
   const team = user.useTeam(params.teamId);
@@ -112,7 +106,7 @@ export default function Layout(props: { children: React.ReactNode }) {
         },
       ]}
     >
-      {props.children}
+      {children}
     </SidebarLayout>
   );
 }

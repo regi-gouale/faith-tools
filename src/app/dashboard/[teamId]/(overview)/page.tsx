@@ -11,8 +11,8 @@ import { Graph } from "./graph";
 import { RecentSales } from "./recent-sales";
 
 export const metadata: Metadata = {
-  title: "Dashboard",
-  description: "Example dashboard app built using the components.",
+  title: "Tableau de bord",
+  description: "Page d'accueil de l'application",
 };
 
 export default function DashboardPage() {
@@ -21,7 +21,9 @@ export default function DashboardPage() {
       <div className="flex-col">
         <div className="flex-1 space-y-4 p-8 pt-6">
           <div className="flex items-center justify-between space-y-2">
-            <h2 className="text-2xl font-bold tracking-tight">Overview</h2>
+            <h2 className="text-2xl font-bold tracking-tight">
+              Vue d'ensemble
+            </h2>
           </div>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <Card>
@@ -129,7 +131,7 @@ export default function DashboardPage() {
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
             <Card className="col-span-4">
               <CardHeader>
-                <CardTitle>Overview</CardTitle>
+                <CardTitle>Ventes</CardTitle>
               </CardHeader>
               <CardContent className="pl-2">
                 <Graph />

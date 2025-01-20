@@ -12,7 +12,13 @@ import {
 } from "@ui/breadcrumb";
 import { buttonVariants } from "@ui/button";
 import { Separator } from "@ui/separator";
-import { Sheet, SheetContent, SheetTrigger } from "@ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@ui/sheet";
 import { LucideIcon, Menu } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
@@ -129,10 +135,10 @@ function HeaderBreadcrumb(props: {
 
   return (
     <Breadcrumb>
-      <BreadcrumbList>
+      <BreadcrumbList key={"breadcrumb-list"}>
         {props.baseBreadcrumb?.map((item, index) => (
           <>
-            <BreadcrumbItem key={index}>
+            <BreadcrumbItem key={`breadcrumb-${index}`}>
               <BreadcrumbLink href={item.href}>{item.title}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator key={`separator-${index}`} />
@@ -185,6 +191,9 @@ export default function SidebarLayout(props: {
                 <Menu />
               </SheetTrigger>
               <SheetContent side="left" className="w-[240px] p-0">
+                <SheetHeader>
+                  <SheetTitle></SheetTitle>
+                </SheetHeader>
                 <SidebarContent
                   onNavigate={() => setSidebarOpen(false)}
                   items={props.items}
