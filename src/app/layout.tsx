@@ -1,19 +1,13 @@
+import { stackServerApp } from "@/features/auth/stack";
+import { Footer } from "@/shared/components/landing/footer";
 import { ThemeProvider } from "@/shared/components/theme/theme-provider";
-import { cn } from "@/shared/utils/utils";
-import { TailwindIndicator } from "@ui/tailwind-indicator";
+import { TailwindIndicator } from "@/shared/components/ui/tailwind-indicator";
+import { StackProvider, StackTheme } from "@stackframe/stack";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Faith Tools - Gestion des églises facile",
@@ -27,19 +21,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(
-          "min-h-screen bg-background",
-          `${geistSans.variable} ${geistMono.variable} font-sans antialiased`
-        )}
-      >
+      <body className={inter.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <StackProvider app={stackServerApp} lang="fr-FR">
+            <StackTheme>{children}</StackTheme>
+          </StackProvider>
+          <Footer
+            builtBy="Régi GOUALE"
+            builtByLink="https://faith.tools"
+            githubLink="https://github.com/regi-gouale/faith-tools.git"
+            twitterLink="https://x.com/faithtools"
+            linkedinLink="https://linkedin.com/company/faithtools"
+          />
           <TailwindIndicator />
         </ThemeProvider>
       </body>
