@@ -63,11 +63,15 @@ services:
     networks:
       - faith-tools
     platform: linux/amd64
+    volumes:
+      - stackauth:/app
+
     depends_on:
       db:
         condition: service_healthy
 volumes:
   db-data:
+  stackauth:
 secrets:
   db-password:
     file: db/password.txt
