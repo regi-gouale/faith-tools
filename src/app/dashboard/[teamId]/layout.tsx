@@ -28,7 +28,7 @@ const navigationItems: SidebarItem[] = [
   },
   {
     name: "Tous les membres",
-    href: "/products",
+    href: "/members",
     icon: ShoppingBag,
     type: "item",
   },
@@ -72,7 +72,7 @@ const navigationItems: SidebarItem[] = [
   },
   {
     name: "Configuration",
-    href: "/configuration",
+    href: "/settings",
     icon: Settings2,
     type: "item",
   },
@@ -88,6 +88,8 @@ export default function Layout({ children }: { children: ReactNode }) {
     router.push("/dashboard");
     return null;
   }
+
+  // handler/account-settings#profile
 
   return (
     <SidebarLayout
