@@ -28,13 +28,13 @@ const navigationItems: SidebarItem[] = [
   },
   {
     name: "Tous les membres",
-    href: "/members",
+    href: "/members/all",
     icon: ShoppingBag,
     type: "item",
   },
   {
     name: "STAR",
-    href: "/people",
+    href: "/members/star",
     icon: Users,
     type: "item",
   },

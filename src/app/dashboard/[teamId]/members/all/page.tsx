@@ -5,7 +5,7 @@ import { PlusIcon } from "lucide-react";
 import { headers } from "next/headers";
 import Link from "next/link";
 
-export default async function MembersPage() {
+export default async function AllMembersPage() {
   const heads = await headers();
   const pathname = heads.get("x-url");
   const splittedPathname = pathname!.split("/");
