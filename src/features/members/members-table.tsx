@@ -22,6 +22,8 @@ import {
 } from "@ui/table";
 import { useState } from "react";
 import { membersTableColumns } from "./members-columns";
+import { MembersTableFilter } from "./members-filter";
+import { MembersTablePagination } from "./members-pagination";
 
 export interface MembersTableProps {
   members: Member[];
@@ -55,6 +57,7 @@ export const MembersTable = ({ members }: MembersTableProps) => {
   return (
     <>
       <div className="mx-auto space-y-4">
+        <MembersTableFilter table={membersTable} />
         <div className="rounded-xl border">
           <Table className="w-full">
             <TableHeader>
@@ -109,6 +112,7 @@ export const MembersTable = ({ members }: MembersTableProps) => {
             </TableBody>
           </Table>
         </div>
+        <MembersTablePagination table={membersTable} />
       </div>
     </>
   );

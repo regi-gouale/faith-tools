@@ -7,7 +7,7 @@ import { ArrowUpDown } from "lucide-react";
 
 export const membersTableColumns: ColumnDef<Member>[] = [
   {
-    id: "Prénom & Nom",
+    id: "Nom",
     accessorKey: "fullname",
     header: ({ column }) => (
       <div className="ml-1 flex items-center justify-start text-primary">
