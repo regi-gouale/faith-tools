@@ -14,25 +14,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id             String   @id @default(nanoid(16))
-  email          String   @unique
-  name           String?
-  image          String?
-  hashedPassword String?
-  role           UserRole @default(USER)
-
-  organizationId String?
-  organization   Organization? @relation(fields: [organizationId], references: [id])
-
-  sessions Session[]
-  accounts Account[]
-
-  @@map("users")
-}
-
-enum UserRole {
-  ADMIN
-  SUPERUSER
-  USER
+model Member {
+  id            String        @id @default(cuid())
+  firstname     String
+  lastname      String
+  maritalStatus MaritalStatus @default(SINGLE)
+  email         String
+  dateOfBirth   DateTime
+  gender        Gender        @default(MALE)
+  address       String?
+  status        MemberStatus  @default(MEMBER)
+  //   Report        Report[]
+  //   departmentIds String[]
+  churchId      String
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 }

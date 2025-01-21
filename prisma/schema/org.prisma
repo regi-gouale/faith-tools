@@ -1,8 +1,0 @@
-model Organization {
-  id        String   @id @default(cuid())
-  name      String
-  slug      String   @unique
-  joinCode  String   @unique
-  users     User[]
-  createdAt DateTime @default(now())
-}
