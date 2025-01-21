@@ -1,6 +1,6 @@
 "use client";
 
-import Logo from "@components/icons/logo";
+import { Logo } from "@components/icons/logo";
 import { ThemeToggle } from "@components/theme/theme-toggle";
 import { Button } from "@ui/button";
 import {
@@ -55,6 +55,9 @@ export default function Navbar() {
           </ul>
           <div className="flex items-center space-x-4">
             <ThemeToggle />
+            {/* <Button variant="default" size="sm">
+              <Link href={stackServerApp.urls.signIn}>Connexion</Link>
+            </Button> */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild className="md:hidden">
                 <Button variant="outline" size="icon">

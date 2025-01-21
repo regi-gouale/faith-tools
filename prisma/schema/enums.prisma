@@ -1,0 +1,21 @@
+enum MaritalStatus {
+  SINGLE
+  MARRIED
+  DIVORCED
+  WIDOWED
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum MemberStatus {
+  MEMBER
+  STAR
+  AIDE
+  RESPONSIBLE
+  MINISTER
+  PASTOR
+  ASSISTANT_PASTOR
+}

@@ -33,7 +33,7 @@ export default function Pricing() {
   return (
     <section id="pricing" className="bg-slate-50 py-20 dark:bg-slate-800">
       <div className="container mx-auto px-4">
-        <h2 className="mb-12 text-center text-3xl font-bold">Pricing Plans</h2>
+        <h2 className="mb-12 text-center text-3xl font-bold">Tarifs</h2>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {plans.map((plan, index) => (
             <Card key={index} className="flex flex-col justify-between">

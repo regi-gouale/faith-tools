@@ -1,3 +1,4 @@
+import { stackServerApp } from "@/features/auth/stack";
 import { Button } from "@ui/button";
 import Link from "next/link";
 
@@ -17,10 +18,10 @@ export default function Hero() {
         </p>
         <div className="flex justify-center space-x-8">
           <Button size="lg" variant="default">
-            <Link href="/auth/signup">S'inscrire</Link>
+            <Link href={stackServerApp.urls.signUp}>S'inscrire</Link>
           </Button>
           <Button size="lg" variant="secondary">
-            <Link href="/auth/signin">Se connecter</Link>
+            <Link href={stackServerApp.urls.signIn}>Se connecter</Link>
           </Button>
         </div>
       </div>
