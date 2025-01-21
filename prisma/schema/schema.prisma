@@ -18,6 +18,7 @@ model Member {
   id            String        @id @default(cuid())
   firstname     String
   lastname      String
+  fullname      String?
   maritalStatus MaritalStatus @default(SINGLE)
   email         String
   dateOfBirth   DateTime

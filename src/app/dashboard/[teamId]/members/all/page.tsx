@@ -8,6 +8,17 @@ import Link from "next/link";
 export default async function AllMembersPage() {
   const heads = await headers();
   const pathname = heads.get("x-url");
+  if (!pathname) {
+    return (
+      <>
+        <div className="flex items-center justify-center h-full">
+          <p className="text-lg font-semibold text-gray-500">
+            {JSON.stringify(heads)}
+          </p>
+        </div>
+      </>
+    );
+  }
   const splittedPathname = pathname!.split("/");
   const teamId = splittedPathname[2];
   // "e736186a-7b40-4d88-84ba-ad80bd42a51d"

@@ -6,6 +6,17 @@ import { headers } from "next/headers";
 export default async function StarMembersPage() {
   const heads = await headers();
   const pathname = heads.get("x-url");
+  if (!pathname) {
+    return (
+      <>
+        <div className="flex items-center justify-center h-full">
+          <p className="text-lg font-semibold text-gray-500">
+            {JSON.stringify(heads)}
+          </p>
+        </div>
+      </>
+    );
+  }
   const splittedPathname = pathname!.split("/");
   const teamId = splittedPathname[2];
 

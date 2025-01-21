@@ -5,11 +5,9 @@ import { SelectedTeamSwitcher, useUser } from "@stackframe/stack";
 import {
   BadgePercent,
   BarChart4,
-  Columns3,
   Globe,
-  Settings2,
-  ShoppingBag,
   ShoppingCart,
+  StarsIcon,
   Users,
 } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
@@ -29,24 +27,19 @@ const navigationItems: SidebarItem[] = [
   {
     name: "Tous les membres",
     href: "/members/all",
-    icon: ShoppingBag,
+    icon: Users,
     type: "item",
   },
   {
     name: "STAR",
     href: "/members/star",
-    icon: Users,
+    icon: StarsIcon,
     type: "item",
   },
-  {
-    name: "Responsables",
-    href: "/segments",
-    icon: Columns3,
-    type: "item",
-  },
+
   {
     type: "label",
-    name: "Départements",
+    name: "Entretiens",
   },
   {
     name: "Revenue",
@@ -66,16 +59,16 @@ const navigationItems: SidebarItem[] = [
     icon: BadgePercent,
     type: "item",
   },
-  {
-    type: "label",
-    name: "Paramètres",
-  },
-  {
-    name: "Configuration",
-    href: "/settings",
-    icon: Settings2,
-    type: "item",
-  },
+  // {
+  //   type: "label",
+  //   name: "Paramètres",
+  // },
+  // {
+  //   name: "Configuration",
+  //   href: "/settings",
+  //   icon: Settings2,
+  //   type: "item",
+  // },
 ];
 
 export default function Layout({ children }: { children: ReactNode }) {
