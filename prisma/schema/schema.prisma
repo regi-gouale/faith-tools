@@ -24,6 +24,7 @@ model Member {
   gender        Gender        @default(MALE)
   address       String?
   status        MemberStatus  @default(MEMBER)
+  phone         String?
   //   Report        Report[]
   //   departmentIds String[]
   churchId      String
