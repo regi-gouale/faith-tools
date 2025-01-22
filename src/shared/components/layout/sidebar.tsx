@@ -139,12 +139,12 @@ function HeaderBreadcrumb(props: {
     <Breadcrumb>
       <BreadcrumbList key={"breadcrumb-list"}>
         {props.baseBreadcrumb?.map((item, index) => (
-          <>
+          <div key={index} className="flex items-center">
             <BreadcrumbItem key={`breadcrumb-${index}`}>
               <BreadcrumbLink href={item.href}>{item.title}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator key={`separator-${index}`} />
-          </>
+          </div>
         ))}
 
         <BreadcrumbItem>
