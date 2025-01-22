@@ -13,10 +13,5 @@ export const Icon = ({
 }) => {
   const LucideIcon = icons[name as keyof typeof icons];
 
-  if (!LucideIcon) {
-    console.error(`Icon "${name}" not found`);
-    return null;
-  }
-
   return <LucideIcon color={color} size={size} className={className} />;
 };

@@ -1,6 +1,6 @@
 import { MembersTable } from "@/features/members/members-table";
 import { prisma } from "@/shared/lib/prisma";
-import { Member, MemberStatus } from "@prisma/client";
+import { type Member, MemberStatus } from "@prisma/client";
 import { headers } from "next/headers";
 
 export default async function StarMembersPage() {
@@ -9,15 +9,15 @@ export default async function StarMembersPage() {
   if (!pathname) {
     return (
       <>
-        <div className="flex items-center justify-center h-full">
-          <p className="text-lg font-semibold text-gray-500">
+        <div className="flex h-full items-center justify-center">
+          <p className="flex text-lg font-semibold text-gray-500">
             {JSON.stringify(heads)}
           </p>
         </div>
       </>
     );
   }
-  const splittedPathname = pathname!.split("/");
+  const splittedPathname = pathname.split("/");
   const teamId = splittedPathname[2];
 
   const allOrganizationsStarMembers: Member[] = await prisma.member.findMany({
@@ -31,7 +31,7 @@ export default async function StarMembersPage() {
 
   return (
     <>
-      <div className="flex-col min-h-[calc(100vh-256px)]">
+      <div className="min-h-[calc(100vh-256px)] flex-col">
         <div className="flex-1 space-y-4 p-8 pt-6">
           <div className="flex items-center justify-between space-y-2">
             <h2 className="text-2xl font-bold tracking-tight">

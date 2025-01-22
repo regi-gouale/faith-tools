@@ -1,6 +1,6 @@
 "use client";
 
-import SidebarLayout, { SidebarItem } from "@components/layout/sidebar";
+import SidebarLayout, { type SidebarItem } from "@components/layout/sidebar";
 import { SelectedTeamSwitcher, useUser } from "@stackframe/stack";
 import {
   BadgePercent,
@@ -11,7 +11,7 @@ import {
   Users,
 } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
-import { ReactNode } from "react";
+import { type ReactNode } from "react";
 
 const navigationItems: SidebarItem[] = [
   {

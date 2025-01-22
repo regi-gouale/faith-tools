@@ -10,7 +10,7 @@ export default function HandlerHeader() {
 
   return (
     <>
-      <header className="fixed w-full z-50 p-4 h-14 flex items-center border-b justify-between bg-background">
+      <header className="fixed z-50 flex h-14 w-full items-center justify-between border-b bg-background p-4">
         <Logo link={user ? "/dashboard" : "/"} />
         <div className="flex items-center justify-end gap-5">
           <UserButton

@@ -51,7 +51,7 @@ export function Footer(props: {
               className={buttonVariants({ variant: "ghost", size: "icon" })}
               key={index}
             >
-              <link.icon className="h-6 w-6" />
+              <link.icon className="size-6" />
             </Link>
           ))}
         </div>

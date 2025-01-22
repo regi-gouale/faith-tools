@@ -18,7 +18,7 @@ export function ThemeToggle() {
     setTheme(theme === "light" ? "dark" : "light");
     setIsDark(!isDark);
   };
-  console.log("theme", theme);
+  // console.log("theme", theme);
 
   return (
     <div className="flex items-center space-x-2">

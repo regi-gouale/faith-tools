@@ -6,8 +6,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/components/ui/select";
-import { Member } from "@prisma/client";
-import { Table } from "@tanstack/react-table";
+import type { Member } from "@prisma/client";
+import type { Table } from "@tanstack/react-table";
 import {
   ChevronFirstIcon,
   ChevronLastIcon,
@@ -15,15 +15,15 @@ import {
   ChevronRightIcon,
 } from "lucide-react";
 
-export interface MembersTablePaginationProps {
+export type MembersTablePaginationProps = {
   table: Table<Member>;
-}
+};
 
 export const MembersTablePagination = ({
   table,
 }: MembersTablePaginationProps) => {
   return (
-    <div className="mx-auto flex items-center justify-between space-x-2 py-4 font-epilogue text-xs text-muted-foreground">
+    <div className="font-epilogue mx-auto flex items-center justify-between space-x-2 py-4 text-xs text-muted-foreground">
       <div className="flex items-center space-x-2">
         <p className="text-xs font-medium">Lignes par page</p>
         <Select

@@ -1,5 +1,5 @@
-import { Member } from "@prisma/client";
-import { ColumnDef } from "@tanstack/react-table";
+import type { Member } from "@prisma/client";
+import type { ColumnDef } from "@tanstack/react-table";
 import { Button } from "@ui/button";
 import { formatDistanceToNowStrict } from "date-fns";
 import { fr } from "date-fns/locale";
@@ -11,7 +11,7 @@ export const membersTableColumns: ColumnDef<Member>[] = [
     accessorKey: "fullname",
     header: ({ column }) => (
       <div className="ml-1 flex items-center justify-start text-primary">
-        <span className="text-sm font-semibold truncate">Prénom & Nom</span>
+        <span className="truncate text-sm font-semibold">Prénom & Nom</span>
         <Button
           className="ml-0"
           variant="ghost"
@@ -28,7 +28,7 @@ export const membersTableColumns: ColumnDef<Member>[] = [
       const member = row.original as Member;
 
       return (
-        <div className="ml-1 text-left text-sm truncate">
+        <div className="ml-1 truncate text-left text-sm">
           {member.firstname} {member.lastname.toLocaleUpperCase()}
         </div>
       );
@@ -38,12 +38,12 @@ export const membersTableColumns: ColumnDef<Member>[] = [
     id: "Email",
     accessorKey: "email",
     header: () => (
-      <div className="flex items-center justify-start text-primary text-sm truncate">
+      <div className="flex items-center justify-start truncate text-sm text-primary">
         E-Mail
       </div>
     ),
     cell: (row) => (
-      <div className="text-sm truncate text-left">
+      <div className="truncate text-left text-sm">
         {row.getValue() as string}
       </div>
     ),
@@ -52,19 +52,19 @@ export const membersTableColumns: ColumnDef<Member>[] = [
     id: "Téléphone",
     accessorKey: "phone",
     header: () => (
-      <div className="flex items-center justify-start text-primary text-sm truncate">
+      <div className="flex items-center justify-start truncate text-sm text-primary">
         Téléphone
       </div>
     ),
     cell: (row) => (
-      <div className="text-sm text-left">{row.getValue() as string}</div>
+      <div className="text-left text-sm">{row.getValue() as string}</div>
     ),
   },
   {
     id: "Statut Membre",
     accessorKey: "status",
     header: () => (
-      <div className="flex items-center justify-start text-primary text-sm truncate">
+      <div className="flex items-center justify-start truncate text-sm text-primary">
         Statut
       </div>
     ),
@@ -72,19 +72,19 @@ export const membersTableColumns: ColumnDef<Member>[] = [
       const member = row.original;
       switch (member.status) {
         case "MEMBER":
-          return <div className="text-sm text-left">Membre</div>;
+          return <div className="text-left text-sm">Membre</div>;
         case "AIDE":
-          return <div className="text-sm text-left">Aide</div>;
+          return <div className="text-left text-sm">Aide</div>;
         case "ASSISTANT_PASTOR":
-          return <div className="text-sm text-left">Assistant Pasteur</div>;
+          return <div className="text-left text-sm">Assistant Pasteur</div>;
         case "PASTOR":
-          return <div className="text-sm text-left">Pasteur</div>;
+          return <div className="text-left text-sm">Pasteur</div>;
         case "MINISTER":
-          return <div className="text-sm text-left">Ministre</div>;
+          return <div className="text-left text-sm">Ministre</div>;
         case "RESPONSIBLE":
-          return <div className="text-sm text-left">Responsable</div>;
+          return <div className="text-left text-sm">Responsable</div>;
         case "STAR":
-          return <div className="text-sm text-left">Star</div>;
+          return <div className="text-left text-sm">Star</div>;
       }
     },
   },

@@ -28,7 +28,7 @@ services:
   #   db:
   #     condition: service_healthy
   db:
-    image: postgres
+    image: postgres:latest
     restart: always
     user: postgres
     secrets:
@@ -50,12 +50,35 @@ services:
     networks:
       - faith-tools
 
+  authdb:
+    image: postgres:latest
+    restart: always
+    user: postgres
+    secrets:
+      - db-password
+    volumes:
+      - authdb-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=auth
+      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+    ports:
+      - 5434:5432
+    expose:
+      - 5432
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - faith-tools
+
   stackauth:
     image: stackauth/server:latest
     env_file:
       - .env.local
     environment:
-      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@db:5432/faithtools
+      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@authdb:5432/auth
     ports:
       - 8101:8101
       - 8102:8102
@@ -67,11 +90,14 @@ services:
       - stackauth:/app
 
     depends_on:
-      db:
+      authdb:
         condition: service_healthy
+
 volumes:
   db-data:
   stackauth:
+  authdb-data:
+
 secrets:
   db-password:
     file: db/password.txt

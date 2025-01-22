@@ -16,24 +16,30 @@ export function ClientPage() {
   const [teamDisplayName, setTeamDisplayName] = useState("");
 
   useEffect(() => {
-    if (teams.length > 0 && !user.selectedTeam) {
-      user.setSelectedTeam(teams[0]);
+    async function setTeam() {
+      if (teams.length > 0 && !user.selectedTeam) {
+        await user.setSelectedTeam(teams[0]);
+      }
     }
+    setTeam().catch((error) => {
+      // Handle the error appropriately, e.g., log to an external service or show a user-friendly message
+      alert(`Failed to set team. Please try again later. \n${error}`);
+    });
   }, [teams, user]);
 
   if (teams.length === 0) {
     return (
-      <div className="flex items-center justify-center h-screen w-screen">
-        <div className="max-w-xs w-full">
+      <div className="flex h-screen w-screen items-center justify-center">
+        <div className="w-full max-w-xs">
           <h1 className="text-center text-2xl font-semibold">Bienvenue !</h1>
           <p className="text-center text-gray-500">
             Créez une église ou réjoignez-en une pour commencer
           </p>
           <form
             className="mt-4"
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
-              user.createTeam({ displayName: teamDisplayName });
+              await user.createTeam({ displayName: teamDisplayName });
             }}
           >
             <div>

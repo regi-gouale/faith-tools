@@ -21,36 +21,34 @@ export const metadata: Metadata = {
   description: "Gérez votre église facilement avec Faith Tools.",
 };
 
-export default function RootLayout({
+export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(
-          "min-h-screen bg-background",
-          `${geistSans.variable} ${geistMono.variable} font-sans antialiased`
-        )}
+    <div
+      className={cn(
+        "min-h-screen bg-background",
+        `${geistSans.variable} ${geistMono.variable} font-sans antialiased`
+      )}
+    >
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-          <Footer
-            builtBy="Régi GOUALE"
-            builtByLink="https://faith.tools"
-            githubLink="https://github.com/regi-gouale/faith-tools.git"
-            twitterLink="https://x.com/faithtools"
-            linkedinLink="https://linkedin.com/company/faithtools"
-          />
-          <TailwindIndicator />
-        </ThemeProvider>
-      </body>
-    </html>
+        {children}
+        <Footer
+          builtBy="Régi GOUALE"
+          builtByLink="https://faith.tools"
+          githubLink="https://github.com/regi-gouale/faith-tools.git"
+          twitterLink="https://x.com/faithtools"
+          linkedinLink="https://linkedin.com/company/faithtools"
+        />
+        <TailwindIndicator />
+      </ThemeProvider>
+    </div>
   );
 }

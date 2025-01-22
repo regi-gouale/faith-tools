@@ -13,7 +13,8 @@ import {
 } from "@ui/form";
 import { Input } from "@ui/input";
 import { Textarea } from "@ui/textarea";
-import { SubmitHandler, useForm } from "react-hook-form";
+import type { SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const contactFormSchema = z.object({
@@ -37,11 +38,28 @@ export default function Contact() {
   const onSubmit: SubmitHandler<ContactFormValues> = (
     values: ContactFormValues
   ) => {
-    console.log(values);
+    alert(JSON.stringify(values, null, 2));
+    // Handle form submission, e.g., send data to a server
+    // fetch('/api/contact', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(values),
+    // }).then(response => {
+    //   if (response.ok) {
+    //     alert('Message sent successfully');
+    //   } else {
+    //     alert('Failed to send message');
+    //   }
+    // }).catch(error => {
+    //   console.error('Error:', error);
+    //   alert('An error occurred');
+    // });
   };
 
   return (
-    <section id="contact" className="py-20 bg-slate-50 dark:bg-slate-800">
+    <section id="contact" className="bg-slate-50 py-20 dark:bg-slate-800">
       <div className="container mx-auto px-4">
         <h2 className="mb-8 text-center text-3xl font-bold">Contactez Nous</h2>
         <div className="mx-auto max-w-3xl">

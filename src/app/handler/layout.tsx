@@ -4,9 +4,9 @@ export default function Layout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex h-screen flex-col">
       <HandlerHeader />
-      <div className="flex-grow">{children}</div>
+      <div className="grow">{children}</div>
     </div>
   );
 }

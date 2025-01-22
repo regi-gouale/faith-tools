@@ -47,7 +47,7 @@ export default function Pricing() {
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-center">
                       <svg
-                        className="mr-2 h-5 w-5 text-green-500"
+                        className="mr-2 size-5 text-green-500"
                         fill="none"
                         strokeLinecap="round"
                         strokeLinejoin="round"

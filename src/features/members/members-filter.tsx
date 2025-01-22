@@ -1,5 +1,5 @@
-import { Member } from "@prisma/client";
-import { Table } from "@tanstack/react-table";
+import type { Member } from "@prisma/client";
+import type { Table } from "@tanstack/react-table";
 import { Button } from "@ui/button";
 import {
   DropdownMenu,
@@ -10,16 +10,16 @@ import {
 import { Input } from "@ui/input";
 import { ChevronDown } from "lucide-react";
 
-export interface MembersTableFilterProps {
+export type MembersTableFilterProps = {
   table: Table<Member>;
-}
+};
 
 export const MembersTableFilter = ({ table }: MembersTableFilterProps) => {
   return (
-    <div className="flex items-center justify-between font-lato">
+    <div className="font-lato flex items-center justify-between">
       <Input
         placeholder="Rechercher une personne"
-        value={(table.getColumn("Nom")?.getFilterValue() as string) ?? ""}
+        value={table.getColumn("Nom")?.getFilterValue() as string}
         onChange={(event) =>
           table.getColumn("Nom")?.setFilterValue(event.target.value)
         }

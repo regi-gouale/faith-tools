@@ -10,9 +10,9 @@ export default async function HomePage() {
   const project = await stackServerApp.getProject();
   if (!project.config.clientTeamCreationEnabled) {
     return (
-      <div className="w-full min-h-96 flex items-center justify-center">
+      <div className="flex min-h-96 w-full items-center justify-center">
         <div className="max-w-xl gap-4">
-          <p className="font-bold text-xl">Setup Required</p>
+          <p className="text-xl font-bold">Setup Required</p>
           <p className="mx-auto text-justify">
             {
               "Pour commencer à utiliser ce projet, veuillez activer la création d'équipe côté client dans le tableau de bord Stack Auth (Projet > Paramètres de l'équipe). Ce message disparaîtra une fois la fonctionnalité activée."

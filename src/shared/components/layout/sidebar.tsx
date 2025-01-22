@@ -19,7 +19,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@ui/sheet";
-import { LucideIcon, Menu } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -68,7 +69,7 @@ function NavItem(props: {
       onClick={props.onClick}
       prefetch={true}
     >
-      <props.item.icon className="mr-2 h-5 w-5" />
+      <props.item.icon className="mr-2 size-5" />
       {props.item.name}
     </Link>
   );
@@ -80,15 +81,15 @@ function SidebarContent(props: {
   sidebarTop?: React.ReactNode;
   basePath: string;
 }) {
-  const path = usePathname();
-  const segment = useSegment(props.basePath);
+  // const path = usePathname();
+  // const segment = useSegment(props.basePath);
 
   return (
-    <div className="flex flex-col h-full items-stretch">
-      <div className="h-14 flex items-center px-2 shrink-0 mr-10 md:mr-0 border-b">
+    <div className="flex h-full flex-col items-stretch">
+      <div className="mr-10 flex h-14 shrink-0 items-center border-b px-2 md:mr-0">
         {props.sidebarTop}
       </div>
-      <div className="flex flex-grow flex-col gap-2 pt-4 overflow-y-auto">
+      <div className="flex grow flex-col gap-2 overflow-y-auto pt-4">
         {props.items.map((item, index) => {
           if (item.type === "separator") {
             return <Separator key={index} className="my-2" />;
@@ -104,8 +105,8 @@ function SidebarContent(props: {
             );
           } else {
             return (
-              <div key={index} className="flex my-2">
-                <div className="flex-grow justify-start text-sm font-medium text-zinc-500 px-2">
+              <div key={index} className="my-2 flex">
+                <div className="grow justify-start px-2 text-sm font-medium text-zinc-500">
                   {item.name}
                 </div>
               </div>
@@ -113,7 +114,7 @@ function SidebarContent(props: {
           }
         })}
 
-        <div className="flex-grow" />
+        <div className="grow" />
       </div>
     </div>
   );
@@ -127,11 +128,12 @@ function HeaderBreadcrumb(props: {
   basePath: string;
 }) {
   const segment = useSegment(props.basePath);
-  console.log(segment);
+  // console.log(segment);
   const item = props.items.find(
     (item) => item.type === "item" && item.href === segment
   );
-  const title: string | undefined = (item as any)?.name;
+  const title: string | undefined =
+    item && item.type === "item" ? (item.name as string) : undefined;
 
   return (
     <Breadcrumb>
@@ -164,16 +166,16 @@ export default function SidebarLayout(props: {
   const { resolvedTheme, setTheme } = useTheme();
 
   return (
-    <div className="w-full flex">
-      <div className="flex-col border-r w-[240px] h-screen sticky top-0 hidden md:flex">
+    <div className="flex w-full">
+      <div className="sticky top-0 hidden h-screen w-[240px] flex-col border-r md:flex">
         <SidebarContent
           items={props.items}
           sidebarTop={props.sidebarTop}
           basePath={props.basePath}
         />
       </div>
-      <div className="flex flex-col flex-grow w-0">
-        <div className="h-14 border-b flex items-center justify-between sticky top-0 bg-white dark:bg-black z-10 px-4 md:px-6">
+      <div className="flex w-0 grow flex-col">
+        <div className="sticky top-0 z-10 flex h-14 items-center justify-between border-b bg-white px-4 dark:bg-black md:px-6">
           <div className="hidden md:flex">
             <HeaderBreadcrumb
               baseBreadcrumb={props.baseBreadcrumb}
@@ -182,7 +184,7 @@ export default function SidebarLayout(props: {
             />
           </div>
 
-          <div className="flex md:hidden items-center">
+          <div className="flex items-center md:hidden">
             <Sheet
               onOpenChange={(open) => setSidebarOpen(open)}
               open={sidebarOpen}
@@ -218,7 +220,7 @@ export default function SidebarLayout(props: {
             }
           />
         </div>
-        <div className="flex-grow">{props.children}</div>
+        <div className="grow">{props.children}</div>
       </div>
     </div>
   );
