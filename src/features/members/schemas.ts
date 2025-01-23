@@ -32,4 +32,5 @@ export const memberFormSchema = z.object({
 
   address: z.string().optional(),
   churchId: z.string(),
+  departments: z.array(z.string()).optional(),
 });

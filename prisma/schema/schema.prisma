@@ -27,6 +27,7 @@ model Member {
   status        MemberStatus  @default(MEMBER)
   phone         String?
   churchId      String
+  departments   String[]
 
   notes     Notes[]
   createdAt DateTime @default(now())

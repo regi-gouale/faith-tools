@@ -1,5 +1,6 @@
 "use client";
 
+import { MultiSelect } from "@/shared/components/ui/multi-select";
 import { cn } from "@/shared/utils/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { Member } from "@prisma/client";
@@ -29,9 +30,11 @@ import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { CalendarIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+// import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import type { z } from "zod";
+import { departmentList } from "../department/department-list";
 import { addMember, editMember } from "./actions";
 import { memberFormSchema } from "./schemas";
 
@@ -44,6 +47,14 @@ export const MemberForm = ({ member, mode = "add" }: MemberFormProps) => {
   const router = useRouter();
   const user = useUser({ or: "redirect" });
   const churchId = user.selectedTeam?.id;
+
+  // const [selectedDepartments, setSelectedDepartments] = useState<string[]>([]);
+
+  // useEffect(() => {
+  //   if (member) {
+  //     setSelectedDepartments(member.departments);
+  //   }
+  // }, [member]);
 
   const form = useForm<z.infer<typeof memberFormSchema>>({
     resolver: zodResolver(memberFormSchema),
@@ -59,13 +70,16 @@ export const MemberForm = ({ member, mode = "add" }: MemberFormProps) => {
       status: member?.status ?? MemberStatus.MEMBER,
       phone: member?.phone ?? "",
       churchId: member?.churchId ?? churchId,
+      departments: member?.departments ?? [],
     },
   });
 
   async function onSubmit(data: z.infer<typeof memberFormSchema>) {
     if (!churchId) return;
+
     data.churchId = churchId;
     const parse = memberFormSchema.safeParse(data);
+    console.log(mode, parse);
 
     if (!parse.success) {
       toast.error("Veuillez corriger les erreurs dans le formulaire");
@@ -340,6 +354,32 @@ export const MemberForm = ({ member, mode = "add" }: MemberFormProps) => {
                   <SelectItem value={MemberStatus.PASTOR}>Pasteur</SelectItem>
                 </SelectContent>
               </Select>
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="departments"
+          render={({ field }) => (
+            <FormItem className="mt-2 grid grid-cols-8 items-center">
+              <FormLabel className="col-span-3 mr-2 md:col-span-2">
+                Département(s) :
+              </FormLabel>
+              <FormControl className="col-span-5 md:col-span-6">
+                <MultiSelect
+                  options={departmentList}
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                  }}
+                  defaultValue={field.value}
+                  placeholder="Choisir les départements"
+                  variant="inverted"
+                  maxCount={3}
+                  disabled={mode === "view"}
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage className="col-span-8 text-right" />
             </FormItem>
           )}
         />
