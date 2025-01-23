@@ -2,6 +2,7 @@
 
 import { cn } from "@/shared/utils/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { Member } from "@prisma/client";
 import { Gender, MaritalStatus, MemberStatus } from "@prisma/client";
 import { useUser } from "@stackframe/stack";
 import { Button } from "@ui/button";
@@ -31,47 +32,64 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import type { z } from "zod";
-import { addMember } from "./actions";
-import { addMemberFormSchema } from "./schemas";
+import { addMember, editMember } from "./actions";
+import { memberFormSchema } from "./schemas";
 
-export const AddMemberForm = () => {
+type MemberFormProps = {
+  member?: Member;
+  mode: "add" | "edit" | "view";
+};
+
+export const MemberForm = ({ member, mode = "add" }: MemberFormProps) => {
   const router = useRouter();
   const user = useUser({ or: "redirect" });
   const churchId = user.selectedTeam?.id;
 
-  const form = useForm<z.infer<typeof addMemberFormSchema>>({
-    resolver: zodResolver(addMemberFormSchema),
+  const form = useForm<z.infer<typeof memberFormSchema>>({
+    resolver: zodResolver(memberFormSchema),
     defaultValues: {
-      firstname: "",
-      lastname: "",
-      fullname: "",
-      maritalStatus: MaritalStatus.SINGLE,
-      email: "",
-      dateOfBirth: new Date("2000-01-01"),
-      gender: Gender.MALE,
-      address: "",
-      status: MemberStatus.MEMBER,
-      phone: "",
-      churchId: churchId,
+      firstname: member?.firstname ?? "",
+      lastname: member?.lastname ?? "",
+      fullname: member?.fullname ?? "",
+      maritalStatus: member?.maritalStatus ?? MaritalStatus.SINGLE,
+      email: member?.email ?? "",
+      dateOfBirth: member?.dateOfBirth ?? new Date("2000-01-01"),
+      gender: member?.gender ?? Gender.MALE,
+      address: member?.address ?? "",
+      status: member?.status ?? MemberStatus.MEMBER,
+      phone: member?.phone ?? "",
+      churchId: member?.churchId ?? churchId,
     },
   });
 
-  async function onSubmit(data: z.infer<typeof addMemberFormSchema>) {
+  async function onSubmit(data: z.infer<typeof memberFormSchema>) {
     if (!churchId) return;
     data.churchId = churchId;
-    const parse = addMemberFormSchema.safeParse(data);
+    const parse = memberFormSchema.safeParse(data);
 
     if (!parse.success) {
       toast.error("Veuillez corriger les erreurs dans le formulaire");
       return;
     }
-    const result = await addMember(data);
 
-    if (result.ok) {
-      toast.success("Membre ajouté avec succès");
-      form.reset();
-      router.back();
-    } else toast.error(result.error);
+    if (mode === "add") {
+      const result = await addMember(data);
+
+      if (result.ok) {
+        toast.success("Membre ajouté avec succès");
+        form.reset();
+        router.back();
+      } else toast.error(result.error);
+    } else if (mode === "edit") {
+      const result = await editMember(data);
+
+      if (result.ok) {
+        toast.success("Membre modifié avec succès");
+        router.back();
+      }
+    } else {
+      router.push(`/dashboard/${churchId}/members/${member?.id}/edit`);
+    }
   }
 
   return (
@@ -94,6 +112,7 @@ export const AddMemberForm = () => {
                     placeholder="Prénom"
                     {...field}
                     className="rounded-xl"
+                    readOnly={mode === "view"}
                   />
                 </FormControl>
                 <FormMessage className="col-span-4 text-right" />
@@ -109,7 +128,12 @@ export const AddMemberForm = () => {
                   Nom :
                 </FormLabel>
                 <FormControl className="col-span-3">
-                  <Input placeholder="Nom" {...field} className="rounded-xl" />
+                  <Input
+                    placeholder="Nom"
+                    {...field}
+                    className="rounded-xl"
+                    readOnly={mode === "view"}
+                  />
                 </FormControl>
                 <FormMessage className="col-span-4 text-right" />
               </FormItem>
@@ -125,7 +149,32 @@ export const AddMemberForm = () => {
                 E-Mail :
               </FormLabel>
               <FormControl className="col-span-6 md:col-span-7">
-                <Input placeholder="E-mail" {...field} className="rounded-xl" />
+                <Input
+                  placeholder="E-mail"
+                  {...field}
+                  className="rounded-xl"
+                  readOnly={mode === "view"}
+                />
+              </FormControl>
+              <FormMessage className="col-span-8 text-right" />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="address"
+          render={({ field }) => (
+            <FormItem className="mt-2 grid grid-cols-8 items-center">
+              <FormLabel className="col-span-2 mr-2 md:col-span-1">
+                Adresse :
+              </FormLabel>
+              <FormControl className="col-span-6 md:col-span-7">
+                <Input
+                  placeholder="Adresse complète"
+                  {...field}
+                  className="rounded-xl"
+                  readOnly={mode === "view"}
+                />
               </FormControl>
               <FormMessage className="col-span-8 text-right" />
             </FormItem>
@@ -144,6 +193,7 @@ export const AddMemberForm = () => {
                   placeholder="+33 6 12 34 57 89"
                   {...field}
                   className="rounded-xl"
+                  readOnly={mode === "view"}
                 />
               </FormControl>
               <FormMessage />
@@ -167,6 +217,7 @@ export const AddMemberForm = () => {
                         "w-full text-left font-normal rounded-xl col-span-5 md:col-span-6",
                         "text-muted-foreground"
                       )}
+                      disabled={mode === "view"}
                     >
                       {format(field.value, "PPP", { locale: fr })}
                       <CalendarIcon className="ml-auto size-4 opacity-50" />
@@ -204,7 +255,10 @@ export const AddMemberForm = () => {
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger className="rounded-xl">
+                    <SelectTrigger
+                      className="rounded-xl"
+                      disabled={mode === "view"}
+                    >
                       <SelectValue placeholder="Choisir un sexe" />
                     </SelectTrigger>
                   </FormControl>
@@ -227,7 +281,10 @@ export const AddMemberForm = () => {
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger className="rounded-xl">
+                    <SelectTrigger
+                      className="rounded-xl"
+                      disabled={mode === "view"}
+                    >
                       <SelectValue placeholder="Choisir un sexe" />
                     </SelectTrigger>
                   </FormControl>
@@ -260,7 +317,10 @@ export const AddMemberForm = () => {
               </FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl className="col-span-5 md:col-span-6">
-                  <SelectTrigger className="rounded-xl">
+                  <SelectTrigger
+                    className="rounded-xl"
+                    disabled={mode === "view"}
+                  >
                     <SelectValue placeholder="Choisir un sexe" />
                   </SelectTrigger>
                 </FormControl>
@@ -286,7 +346,7 @@ export const AddMemberForm = () => {
         <div className="mt-8 grid grid-cols-2 space-x-4">
           <div></div>
           <Button type="submit" className="rounded-xl shadow-md">
-            Ajouter
+            {mode === "add" ? "Ajouter" : "Modifier"}
           </Button>
         </div>
       </form>

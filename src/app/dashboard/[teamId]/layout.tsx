@@ -25,7 +25,7 @@ const navigationItems: SidebarItem[] = [
     name: "Membres",
   },
   {
-    name: "Tous les membres",
+    name: "Tous",
     href: "/members/all",
     icon: Users,
     type: "item",
@@ -81,8 +81,6 @@ export default function Layout({ children }: { children: ReactNode }) {
     router.push("/dashboard");
     return null;
   }
-
-  // handler/account-settings#profile
 
   return (
     <SidebarLayout
