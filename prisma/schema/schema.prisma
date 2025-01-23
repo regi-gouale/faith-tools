@@ -26,9 +26,23 @@ model Member {
   address       String?
   status        MemberStatus  @default(MEMBER)
   phone         String?
-  //   Report        Report[]
-  //   departmentIds String[]
   churchId      String
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+
+  notes     Notes[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Notes {
+  id      String   @id @default(cuid())
+  type    NoteType @default(INTERVIEW)
+  content String
+  reason  String
+
+  memberId String
+  userId   String
+
+  Member    Member   @relation(fields: [memberId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

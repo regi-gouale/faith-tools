@@ -19,3 +19,13 @@ enum MemberStatus {
   PASTOR
   ASSISTANT_PASTOR
 }
+
+enum NoteType {
+  INTERVIEW
+  ADVICE
+  PRAYER
+  FOLLOW_UP
+  INTEGRATION
+  LEAVING
+  CLINICAL
+}
