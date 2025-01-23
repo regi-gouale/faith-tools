@@ -1,6 +1,7 @@
 "use client";
 
 import type { Member } from "@prisma/client";
+import { useUser } from "@stackframe/stack";
 import type {
   ColumnFiltersState,
   SortingState,
@@ -32,6 +33,9 @@ export type MembersTableProps = {
 };
 
 export const MembersTable = ({ members }: MembersTableProps) => {
+  const user = useUser({ or: "redirect" });
+  const churchId = user.selectedTeam?.id;
+
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -90,7 +94,7 @@ export const MembersTable = ({ members }: MembersTableProps) => {
                       <TableCell
                         key={cell.id}
                         onClick={() => {
-                          window.location.href = `/dashboard/${row.original.churchId}/persons/${row.original.id}`;
+                          window.location.href = `/dashboard/${churchId}/members/${row.original.id}`;
                         }}
                       >
                         {flexRender(

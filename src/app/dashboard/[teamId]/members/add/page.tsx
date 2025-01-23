@@ -1,4 +1,4 @@
-import { AddMemberForm } from "@/features/members/add-member-form";
+import { MemberForm } from "@/features/members/member-form";
 
 export default function AddMemberPage() {
   return (
@@ -9,7 +9,7 @@ export default function AddMemberPage() {
             Ajouter un membre
           </h2>
           <div>
-            <AddMemberForm />
+            <MemberForm mode="add" />
           </div>
         </div>
       </div>

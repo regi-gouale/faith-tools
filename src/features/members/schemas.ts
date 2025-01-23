@@ -2,7 +2,7 @@ import { Gender, MaritalStatus, MemberStatus } from "@prisma/client";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import { z } from "zod";
 
-export const addMemberFormSchema = z.object({
+export const memberFormSchema = z.object({
   firstname: z.string({ required_error: "Le prénom est requis" }).min(2, {
     message: "Le prénom doit contenir au moins 2 caractères",
   }),
