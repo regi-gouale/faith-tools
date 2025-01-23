@@ -36,10 +36,7 @@ export default function JoinChurchPage() {
             placeholder="Nom de l'église"
             className="mt-4 w-full rounded border p-2"
           />
-          <button
-            type="submit"
-            className="mt-4 w-full rounded bg-primary-foreground p-2 text-white"
-          >
+          <button type="submit" className="mt-4 w-full rounded">
             Créer une église
           </button>
         </form>
