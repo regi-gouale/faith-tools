@@ -1,8 +1,9 @@
 import { stackServerApp } from "@/features/auth/stack";
 import { Footer } from "@/shared/components/landing/footer";
 import { ThemeProvider } from "@/shared/components/theme/theme-provider";
-import { TailwindIndicator } from "@/shared/components/ui/tailwind-indicator";
 import { StackProvider, StackTheme } from "@stackframe/stack";
+import { Toaster } from "@ui/sonner";
+import { TailwindIndicator } from "@ui/tailwind-indicator";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -38,6 +39,7 @@ export default function RootLayout({
             twitterLink="https://x.com/faithtools"
             linkedinLink="https://linkedin.com/company/faithtools"
           />
+          <Toaster />
           <TailwindIndicator />
         </ThemeProvider>
       </body>

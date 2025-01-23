@@ -14,10 +14,10 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
-interface NavItemProps {
+type NavItemProps = {
   href: string;
   label: string;
-}
+};
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,11 +46,11 @@ export default function Navbar() {
   );
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
-      <div className="container mx-auto px-4 py-4 flex justify-evenly">
-        <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
+    <header className="fixed inset-x-0 top-0 z-50 bg-background/80 backdrop-blur-sm">
+      <div className="container mx-auto flex justify-evenly p-4">
+        <nav className="container mx-auto flex items-center justify-between p-4">
           <Logo />
-          <ul className="hidden md:flex space-x-6">
+          <ul className="hidden space-x-6 md:flex">
             <NavItems />
           </ul>
           <div className="flex items-center space-x-4">
@@ -61,7 +61,7 @@ export default function Navbar() {
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild className="md:hidden">
                 <Button variant="outline" size="icon">
-                  <Menu className="w-6 h-6" />
+                  <Menu className="size-6" />
                   <span className="sr-only">Toggle Menu</span>
                 </Button>
               </SheetTrigger>
@@ -69,7 +69,7 @@ export default function Navbar() {
                 <SheetHeader>
                   <SheetTitle>Menu</SheetTitle>
                 </SheetHeader>
-                <nav className="flex flex-col space-y-4 mt-4">
+                <nav className="mt-4 flex flex-col space-y-4">
                   <NavItems />
                 </nav>
               </SheetContent>

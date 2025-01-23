@@ -1,16 +1,18 @@
 "use client";
 
-import { Member } from "@prisma/client";
-import {
+import type { Member } from "@prisma/client";
+import type {
   ColumnFiltersState,
+  SortingState,
+  VisibilityState,
+} from "@tanstack/react-table";
+import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  SortingState,
   useReactTable,
-  VisibilityState,
 } from "@tanstack/react-table";
 import {
   Table,
@@ -25,9 +27,9 @@ import { membersTableColumns } from "./members-columns";
 import { MembersTableFilter } from "./members-filter";
 import { MembersTablePagination } from "./members-pagination";
 
-export interface MembersTableProps {
+export type MembersTableProps = {
   members: Member[];
-}
+};
 
 export const MembersTable = ({ members }: MembersTableProps) => {
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -77,7 +79,7 @@ export const MembersTable = ({ members }: MembersTableProps) => {
               ))}
             </TableHeader>
             <TableBody>
-              {membersTable.getRowModel().rows?.length ? (
+              {membersTable.getRowModel().rows.length ? (
                 membersTable.getRowModel().rows.map((row, index) => (
                   <TableRow
                     key={row.id}
