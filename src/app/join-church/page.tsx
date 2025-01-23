@@ -1,9 +1,13 @@
 "use client";
 
 import { useUser } from "@stackframe/stack";
+import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
+import { toast } from "sonner";
 
 export default function JoinChurchPage() {
+  const router = useRouter();
+
   const user = useUser({ or: "redirect" });
 
   const [teamDisplayName, setTeamDisplayName] = useState("");
@@ -12,8 +16,9 @@ export default function JoinChurchPage() {
     e.preventDefault();
     try {
       await user.createTeam({ displayName: teamDisplayName });
+      router.push("/dashboard");
     } catch (error) {
-      alert(`Failed to create team. Please try again later. \n${error}`);
+      toast.error(`Failed to create team. Please try again later. \n${error}`);
     }
   };
   return (
