@@ -375,7 +375,11 @@ export const MemberForm = ({ member, mode = "add" }: MemberFormProps) => {
         />
         <div className="mt-8 grid grid-cols-2 space-x-4">
           <div></div>
-          <Button type="submit" className="rounded-xl shadow-md">
+          <Button
+            type="submit"
+            className="rounded-xl shadow-md"
+            variant={mode === "view" ? "outline" : "default"}
+          >
             {mode === "add" ? "Ajouter" : "Modifier"}
           </Button>
         </div>
