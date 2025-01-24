@@ -2,7 +2,7 @@
 
 import SidebarLayout, { type SidebarItem } from "@components/layout/sidebar";
 import { SelectedTeamSwitcher, useUser } from "@stackframe/stack";
-import { Globe, NotepadText, StarsIcon, Users } from "lucide-react";
+import { Globe, HomeIcon, NotepadText, StarsIcon, Users } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { type ReactNode } from "react";
 
@@ -32,10 +32,10 @@ const navigationItems: SidebarItem[] = [
 
   {
     type: "label",
-    name: "Entretiens",
+    name: "Compte-rendus",
   },
   {
-    name: "Tous",
+    name: "Entretiens",
     href: "/notes/all",
     icon: NotepadText,
     type: "item",
@@ -52,16 +52,16 @@ const navigationItems: SidebarItem[] = [
   //   icon: BadgePercent,
   //   type: "item",
   // },
-  // {
-  //   type: "label",
-  //   name: "Paramètres",
-  // },
-  // {
-  //   name: "Configuration",
-  //   href: "/settings",
-  //   icon: Settings2,
-  //   type: "item",
-  // },
+  {
+    type: "label",
+    name: "Départements",
+  },
+  {
+    name: "Accueil",
+    href: "/settings",
+    icon: HomeIcon,
+    type: "item",
+  },
 ];
 
 export default function Layout({ children }: { children: ReactNode }) {
