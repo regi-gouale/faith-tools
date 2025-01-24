@@ -1,7 +1,5 @@
-import { Footer } from "@/shared/components/landing/footer";
 import { ThemeProvider } from "@/shared/components/theme/theme-provider";
 import { cn } from "@/shared/utils/utils";
-import { TailwindIndicator } from "@ui/tailwind-indicator";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
@@ -40,14 +38,14 @@ export default function Layout({
         disableTransitionOnChange
       >
         {children}
-        <Footer
+        {/* <Footer
           builtBy="Régi GOUALE"
           builtByLink="https://faith.tools"
           githubLink="https://github.com/regi-gouale/faith-tools.git"
           twitterLink="https://x.com/faithtools"
           linkedinLink="https://linkedin.com/company/faithtools"
-        />
-        <TailwindIndicator />
+        /> */}
+        {/* <TailwindIndicator /> */}
       </ThemeProvider>
     </div>
   );

@@ -1,5 +1,6 @@
 import { stackServerApp } from "@/features/auth/stack";
 import { Button } from "@ui/button";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Hero() {
@@ -23,6 +24,15 @@ export default function Hero() {
           <Button size="lg" variant="secondary">
             <Link href={stackServerApp.urls.signIn}>Se connecter</Link>
           </Button>
+        </div>
+        <div className="mt-8 flex items-center justify-center">
+          <Image
+            src={"/dashboard.png"}
+            alt={"Hero image"}
+            width={1000}
+            height={200}
+            className="rounded-xl border shadow-2xl"
+          />
         </div>
       </div>
     </section>
