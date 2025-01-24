@@ -1,26 +1,16 @@
+import { stackServerApp } from "@/features/auth/stack";
 import { MembersTable } from "@/features/members/members-table";
 import { prisma } from "@/shared/lib/prisma";
 import { type Member } from "@prisma/client";
 import { PlusIcon } from "lucide-react";
-import { headers } from "next/headers";
 import Link from "next/link";
 
 export default async function AllMembersPage() {
-  const heads = await headers();
-  const pathname = heads.get("x-url");
-  if (!pathname) {
-    return (
-      <>
-        <div className="flex h-full items-center justify-center">
-          <p className="text-lg font-semibold text-gray-500">
-            {JSON.stringify(heads)}
-          </p>
-        </div>
-      </>
-    );
-  }
-  const splittedPathname = pathname.split("/");
-  const teamId = splittedPathname[2];
+  const user = await stackServerApp.getUser();
+
+  if (!user) return null;
+  if (!user.selectedTeam) return null;
+  const teamId = user.selectedTeam.id;
 
   const allOrganizationsMembers: Member[] = await prisma.member.findMany({
     where: {

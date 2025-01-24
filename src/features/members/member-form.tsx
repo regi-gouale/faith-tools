@@ -30,7 +30,6 @@ import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { CalendarIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-// import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import type { z } from "zod";
@@ -47,14 +46,6 @@ export const MemberForm = ({ member, mode = "add" }: MemberFormProps) => {
   const router = useRouter();
   const user = useUser({ or: "redirect" });
   const churchId = user.selectedTeam?.id;
-
-  // const [selectedDepartments, setSelectedDepartments] = useState<string[]>([]);
-
-  // useEffect(() => {
-  //   if (member) {
-  //     setSelectedDepartments(member.departments);
-  //   }
-  // }, [member]);
 
   const form = useForm<z.infer<typeof memberFormSchema>>({
     resolver: zodResolver(memberFormSchema),
@@ -79,7 +70,6 @@ export const MemberForm = ({ member, mode = "add" }: MemberFormProps) => {
 
     data.churchId = churchId;
     const parse = memberFormSchema.safeParse(data);
-    console.log(mode, parse);
 
     if (!parse.success) {
       toast.error("Veuillez corriger les erreurs dans le formulaire");

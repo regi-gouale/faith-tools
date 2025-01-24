@@ -40,8 +40,10 @@ model Notes {
   content String
   reason  String
 
-  memberId String
-  userId   String
+  memberFullname String
+  memberId       String
+  churchId       String
+  userId         String
 
   Member    Member   @relation(fields: [memberId], references: [id])
   createdAt DateTime @default(now())
