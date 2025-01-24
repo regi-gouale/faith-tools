@@ -1,49 +1,51 @@
 import { stackServerApp } from "@/features/auth/stack";
-import { MemberForm } from "@/features/members/member-form";
+import { NoteForm } from "@/features/notes/note-form";
 import { prisma } from "@/shared/lib/prisma";
-import type { Member } from "@prisma/client";
+import type { Notes } from "@prisma/client";
 import type { Team } from "@stackframe/stack";
+import { format } from "date-fns";
+import { fr } from "date-fns/locale";
 
-type MemberIdPageProps = Promise<{
-  memberId: string;
+type NoteIdPageProps = Promise<{
+  noteId: string;
 }>;
 
-export default async function EditMemberIdPage(props: {
-  params: MemberIdPageProps;
-}) {
+export default async function ViewNotePage(props: { params: NoteIdPageProps }) {
   const user = await stackServerApp.getUser({ or: "redirect" });
   if (!user.selectedTeam) return <div>Chargement en cours ...</div>;
 
   const team = (await user.getTeam(user.selectedTeam.id)) as Team;
+  const { noteId } = await props.params;
 
-  const { memberId } = await props.params;
-
-  if (!memberId) return <div>Chargement en cours ...</div>;
-
-  const member: Member | null = await prisma.member.findUnique({
-    where: { id: memberId },
+  if (!noteId) return <div>Chargement en cours ...</div>;
+  const note: Notes | null = await prisma.notes.findUnique({
+    where: { id: noteId },
+  });
+  const members = await prisma.member.findMany({
+    where: { churchId: team.id },
   });
 
-  if (!member) return <div>Membre introuvable</div>;
+  if (!note) return <div>Compte-rendu introuvable</div>;
 
   return (
     <>
       <div className="min-h-[calc(100vh-256px)] flex-col items-center">
         <div className="flex-1 space-y-4 p-8 pt-6">
           <h2 className="text-center text-2xl font-bold tracking-tight">
-            Modifier les informations de {member.fullname}
+            Entretien avec {note.memberFullname}
           </h2>
         </div>
         <div className="mx-auto flex w-full flex-col space-y-4">
           <div className="mx-4 space-y-2 rounded-xl p-2">
             <div>
               <div className="text-justify text-muted-foreground md:text-center">
-                Voici les informations de {member.fullname} qui est membre de
-                l'église {team.displayName}
+                Voici le compte-rendu de l'entretien effectué avec{" "}
+                {note.memberFullname} le{" "}
+                {format(note.noteDate, "PPP", { locale: fr })}.
               </div>
             </div>
             <div>
-              <MemberForm member={member} mode={"edit"} />
+              <NoteForm mode={"view"} members={members} note={note} />
             </div>
           </div>
         </div>

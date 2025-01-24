@@ -34,6 +34,7 @@ export const addMember = async (data: z.infer<typeof memberFormSchema>) => {
         status: data.status,
         phone: data.phone,
         churchId: data.churchId,
+        departments: data.departments,
       },
     });
     revalidatePath("/");
@@ -84,6 +85,7 @@ export const editMember = async (data: z.infer<typeof memberFormSchema>) => {
         status: data.status,
         phone: data.phone,
         churchId: data.churchId,
+        departments: data.departments,
       },
     });
     revalidatePath("/");

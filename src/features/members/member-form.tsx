@@ -1,5 +1,6 @@
 "use client";
 
+import { MultiSelect } from "@/shared/components/ui/multi-select";
 import { cn } from "@/shared/utils/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { Member } from "@prisma/client";
@@ -32,6 +33,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import type { z } from "zod";
+import { departmentList } from "../department/department-list";
 import { addMember, editMember } from "./actions";
 import { memberFormSchema } from "./schemas";
 
@@ -59,11 +61,13 @@ export const MemberForm = ({ member, mode = "add" }: MemberFormProps) => {
       status: member?.status ?? MemberStatus.MEMBER,
       phone: member?.phone ?? "",
       churchId: member?.churchId ?? churchId,
+      departments: member?.departments ?? [],
     },
   });
 
   async function onSubmit(data: z.infer<typeof memberFormSchema>) {
     if (!churchId) return;
+
     data.churchId = churchId;
     const parse = memberFormSchema.safeParse(data);
 
@@ -343,9 +347,39 @@ export const MemberForm = ({ member, mode = "add" }: MemberFormProps) => {
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="departments"
+          render={({ field }) => (
+            <FormItem className="mt-2 grid grid-cols-8 items-center">
+              <FormLabel className="col-span-3 mr-2 md:col-span-2">
+                Département(s) :
+              </FormLabel>
+              <FormControl className="col-span-5 md:col-span-6">
+                <MultiSelect
+                  options={departmentList}
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                  }}
+                  defaultValue={field.value}
+                  placeholder="Choisir les départements"
+                  variant="inverted"
+                  maxCount={3}
+                  disabled={mode === "view"}
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage className="col-span-8 text-right" />
+            </FormItem>
+          )}
+        />
         <div className="mt-8 grid grid-cols-2 space-x-4">
           <div></div>
-          <Button type="submit" className="rounded-xl shadow-md">
+          <Button
+            type="submit"
+            className="rounded-xl shadow-md"
+            variant={mode === "view" ? "outline" : "default"}
+          >
             {mode === "add" ? "Ajouter" : "Modifier"}
           </Button>
         </div>
