@@ -26,8 +26,6 @@ export default async function MemberIdPage(props: {
 
   if (!member) return <div>Membre introuvable</div>;
 
-  const permissions = await user.listPermissions(team);
-
   // Check if
 
   return (

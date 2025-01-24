@@ -2,14 +2,7 @@
 
 import SidebarLayout, { type SidebarItem } from "@components/layout/sidebar";
 import { SelectedTeamSwitcher, useUser } from "@stackframe/stack";
-import {
-  BadgePercent,
-  Globe,
-  NotepadText,
-  ShoppingCart,
-  StarsIcon,
-  Users,
-} from "lucide-react";
+import { Globe, NotepadText, StarsIcon, Users } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { type ReactNode } from "react";
 
@@ -47,18 +40,18 @@ const navigationItems: SidebarItem[] = [
     icon: NotepadText,
     type: "item",
   },
-  {
-    name: "Orders",
-    href: "/orders",
-    icon: ShoppingCart,
-    type: "item",
-  },
-  {
-    name: "Discounts",
-    href: "/discounts",
-    icon: BadgePercent,
-    type: "item",
-  },
+  // {
+  //   name: "Orders",
+  //   href: "/orders",
+  //   icon: ShoppingCart,
+  //   type: "item",
+  // },
+  // {
+  //   name: "Discounts",
+  //   href: "/discounts",
+  //   icon: BadgePercent,
+  //   type: "item",
+  // },
   // {
   //   type: "label",
   //   name: "Paramètres",

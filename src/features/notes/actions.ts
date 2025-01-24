@@ -63,53 +63,52 @@ export const addNote = async (data: z.infer<typeof notesFormSchema>) => {
   }
 };
 
-// export const editMember = async (data: z.infer<typeof memberFormSchema>) => {
-//   try {
-//     const member = await prisma.member.findFirst({
-//       where: {
-//         email: data.email,
-//       },
-//     });
+export const editNote = async (data: z.infer<typeof notesFormSchema>) => {
+  try {
+    const note = await prisma.notes.findFirst({
+      where: {
+        memberId: data.memberId,
+        noteDate: data.noteDate,
+        type: data.type,
+      },
+    });
 
-//     if (!member) {
-//       return {
-//         ok: false,
-//         error: "La personne n'existe pas",
-//         data: null,
-//       };
-//     }
+    if (!note) {
+      return {
+        ok: false,
+        error: "Le compte-rendu n'existe pas",
+        data: null,
+      };
+    }
 
-//     const updatedMember = await prisma.member.update({
-//       where: {
-//         id: member.id,
-//       },
-//       data: {
-//         firstname: data.firstname,
-//         lastname: data.lastname.toLocaleUpperCase(),
-//         fullname: `${data.firstname} ${data.lastname.toLocaleUpperCase()}`,
-//         maritalStatus: data.maritalStatus,
-//         email: data.email,
-//         dateOfBirth: data.dateOfBirth,
-//         gender: data.gender,
-//         address: data.address,
-//         status: data.status,
-//         phone: data.phone,
-//         churchId: data.churchId,
-//         departments: data.departments,
-//       },
-//     });
-//     revalidatePath("/");
-//     return {
-//       ok: true,
-//       error: null,
-//       data: JSON.parse(JSON.stringify(updatedMember)),
-//     };
-//   } catch {
-//     // console.error("Une erreur est survenue lors de la création de la personne");
-//     return {
-//       ok: false,
-//       error: "Une erreur est survenue lors de la modification de la personne",
-//       data: null,
-//     };
-//   }
-// };
+    const updatedNote = await prisma.notes.update({
+      where: {
+        id: note.id,
+      },
+      data: {
+        type: data.type,
+        content: data.content,
+        reason: data.reason,
+        noteDate: data.noteDate,
+
+        memberFullname: data.memberFullname ?? "",
+        memberId: data.memberId,
+        churchId: data.churchId ?? "",
+        userId: data.userId ?? "",
+      },
+    });
+    revalidatePath("/");
+    return {
+      ok: true,
+      error: null,
+      data: JSON.parse(JSON.stringify(updatedNote)),
+    };
+  } catch {
+    // console.error("Une erreur est survenue lors de la création de la personne");
+    return {
+      ok: false,
+      error: "Une erreur est survenue lors de la modification du compte-rendu",
+      data: null,
+    };
+  }
+};

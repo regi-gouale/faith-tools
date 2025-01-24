@@ -60,11 +60,11 @@ export const notesTableColumns: ColumnDef<Notes>[] = [
     ),
   },
   {
-    id: "Créé le",
-    accessorKey: "createdAt",
+    id: "Date de l'entretien",
+    accessorKey: "noteDate",
     header: () => (
       <div className="flex items-center justify-start truncate text-sm text-primary">
-        Créé le
+        Date de l'entretien
       </div>
     ),
     cell: (row) => (

@@ -26,10 +26,6 @@ export default async function EditMemberIdPage(props: {
 
   if (!member) return <div>Membre introuvable</div>;
 
-  const permissions = await user.listPermissions(team);
-
-  // Check if
-
   return (
     <>
       <div className="min-h-[calc(100vh-256px)] flex-col items-center">

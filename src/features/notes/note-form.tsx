@@ -10,7 +10,7 @@ import {
 import { Textarea } from "@/shared/components/ui/textarea";
 import { cn } from "@/shared/utils/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { Member } from "@prisma/client";
+import type { Member, Notes } from "@prisma/client";
 import { NoteType } from "@prisma/client";
 import { useUser } from "@stackframe/stack";
 import { Button } from "@ui/button";
@@ -36,17 +36,16 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import type { z } from "zod";
-import { addNote } from "./actions";
+import { addNote, editNote } from "./actions";
 import { notesFormSchema } from "./schemas";
-// import { addMember, editMember } from "./actions";
-// import { memberFormSchema } from "./schemas";
 
 type NoteFormProps = {
   members: Member[];
+  note?: Notes;
   mode: "add" | "edit" | "view";
 };
 
-export const NoteForm = ({ members, mode = "add" }: NoteFormProps) => {
+export const NoteForm = ({ members, note, mode = "add" }: NoteFormProps) => {
   const router = useRouter();
   const user = useUser({ or: "redirect" });
   const churchId = user.selectedTeam?.id;
@@ -54,14 +53,14 @@ export const NoteForm = ({ members, mode = "add" }: NoteFormProps) => {
   const form = useForm<z.infer<typeof notesFormSchema>>({
     resolver: zodResolver(notesFormSchema),
     defaultValues: {
-      type: NoteType.INTERVIEW,
-      reason: "",
-      content: "",
-      noteDate: new Date(),
-      memberFullname: "",
-      memberId: "",
-      churchId: "",
-      userId: "",
+      type: note?.type ?? NoteType.INTERVIEW,
+      reason: note?.reason ?? "",
+      content: note?.content ?? "",
+      noteDate: note?.noteDate ?? new Date(),
+      memberFullname: note?.memberFullname ?? "",
+      memberId: note?.memberId ?? "",
+      churchId: note?.churchId ?? "",
+      userId: note?.userId ?? "",
     },
   });
 
@@ -91,8 +90,17 @@ export const NoteForm = ({ members, mode = "add" }: NoteFormProps) => {
       }
     } else if (mode === "edit") {
       toast.info("Modification du compte-rendu en cours");
+      const result = await editNote(data);
+
+      if (result.ok) {
+        toast.success("Compte-rendu modifié avec succès");
+        router.push(`/dashboard/${churchId}/notes/${result.data.id}`);
+      } else {
+        toast.error(result.error);
+      }
     } else {
       toast.info("Chargement du compte-rendu en cours");
+      router.push(`/dashboard/${churchId}/notes/${note?.id}/edit`);
     }
   }
 

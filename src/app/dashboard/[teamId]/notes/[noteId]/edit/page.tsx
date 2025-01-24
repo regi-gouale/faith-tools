@@ -10,7 +10,7 @@ type NoteIdPageProps = Promise<{
   noteId: string;
 }>;
 
-export default async function ViewNotePage(props: { params: NoteIdPageProps }) {
+export default async function EditNotePage(props: { params: NoteIdPageProps }) {
   const user = await stackServerApp.getUser({ or: "redirect" });
   if (!user.selectedTeam) return <div>Chargement en cours ...</div>;
 
@@ -45,7 +45,7 @@ export default async function ViewNotePage(props: { params: NoteIdPageProps }) {
               </div>
             </div>
             <div>
-              <NoteForm mode={"view"} members={members} note={note} />
+              <NoteForm mode={"edit"} members={members} note={note} />
             </div>
           </div>
         </div>
