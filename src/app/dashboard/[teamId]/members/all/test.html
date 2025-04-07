@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gouale Service - Premium Dishware Rental</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
+      }
+
+      body {
+        background-color: #f9f9f9;
+      }
+
+      .hero {
+        height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        padding: 20px;
+      }
+
+      .hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .hero-image {
+        width: 100%;
+        height: 400px;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background-color: #gold;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+
+      .nav {
+        background-color: #ffffff;
+        padding: 20px 50px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .nav-links a {
+        margin-left: 30px;
+        text-decoration: none;
+        color: #333;
+      }
+
+      .service-description {
+        max-width: 800px;
+        margin: 50px auto;
+        text-align: center;
+      }
+
+      .benefits {
+        display: flex;
+        justify-content: space-around;
+        padding: 50px 20px;
+      }
+
+      .benefit-card {
+        width: 250px;
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 50px 20px;
+        background-color: white;
+      }
+
+      .product-card {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .product-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .testimonials {
+        background-color: #f9f9f9;
+        padding: 50px 20px;
+      }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+      }
+
+      .testimonial-card {
+        background-color: white;
+        padding: 25px;
+        border-radius: 10px;
+      }
+
+      .how-it-works {
+        padding: 50px 20px;
+        background-color: white;
+      }
+
+      .steps {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 50px;
+      }
+
+      .step-card {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      .contact-form {
+        padding: 50px 20px;
+        background-color: #f9f9f9;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .hero-image {
+          height: 300px;
+        }
+
+        .nav-links {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="logo">Gouale Service</div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#products">Products</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <header class="hero" id="home">
+      <div class="hero-content">
+        <h1>Elevate Your Events with Exceptional Tableware!</h1>
+        <p>
+          Transform your events into memorable experiences with our premium
+          dishware collection.
+        </p>
+        <a href="#products" class="cta-button">Explore Collection</a>
+      </div>
+    </header>
+
+    <section class="service-description" id="services">
+      <h2>Our Services</h2>
+      <p>
+        We provide high-quality tableware solutions for any type of event. From
+        weddings to corporate events, we have the perfect dishes to make your
+        occasion unforgettable.
+      </p>
+    </section>
+
+    <section class="benefits">
+      <div class="benefit-card">
+        <h3>Premium Quality</h3>
+        <p>
+          Celebration deserves the best - our products are made with the finest
+          materials and designed for lasting impressions.
+        </p>
+      </div>
+      <div class="benefit-card">
+        <h3>Wide Range</h3>
+        <p>
+          Choose from an extensive collection of designs and colors to match
+          your event's theme perfectly.
+        </p>
+      </div>
+      <div class="benefit-card">
+        <h3>Prompt Delivery</h3>
+        <p>
+          We ensure that your order arrives on time, so you can focus on
+          enjoying your event.
+        </p>
+      </div>
+    </section>
+
+    <section class="product-grid" id="products">
+      <div class="product-card">
+        <img
+          src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+          alt="Dinner Plate"
+          class="product-image"
+        />
+        <h3>Dinner Plates</h3>
+        <p>Premium ceramic plates for a sophisticated dining experience.</p>
+      </div>
+      <div class="product-card">
+        <img
+          src="https://images.unsplash.com/photo-1579026344822-b95a2c06f38c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+          alt="Glassware"
+          class="product-image"
+        />
+        <h3>Glassware</h3>
+        <p>Beautifully crafted glassware to enhance your event's ambiance.</p>
+      </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+      <h2>What Our Clients Say</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <p>
+            "Our wedding was absolutely amazing thanks to Gouale Service. The
+            tableware was stunning and matched our theme perfectly."
+          </p>
+          <h4>- Sarah and Michael</h4>
+        </div>
+        <div class="testimonial-card">
+          <p>
+            "I used Gouale Service for my corporate event - the dishes were
+            elegant and received great feedback from all attendees."
+          </p>
+          <h4>- Emily Johnson</h4>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div class="step-card">
+          <h3>1. Choose Your Favorites</h3>
+          <p>Select the tableware pieces that best fit your event's needs.</p>
+        </div>
+        <div class="step-card">
+          <h3>2. Place Your Order</h3>
+          <p>Complete the order and our team will handle the rest.</p>
+        </div>
+        <div class="step-card">
+          <h3>3. Receive & Enjoy</h3>
+          <p>
+            Your order arrives in time for your event, ready to use and impress.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-form" id="contact">
+      <h2>Contact Us</h2>
+      <form>
+        <div class="form-group">
+          <label>Name:</label>
+          <input type="text" required />
+        </div>
+        <div class="form-group">
+          <label>Email:</label>
+          <input type="email" required />
+        </div>
+        <div class="form-group">
+          <label>Message:</label>
+          <textarea required></textarea>
+        </div>
+        <button type="submit" class="cta-button">Send Message</button>
+      </form>
+    </section>
+  </body>
+</html>
